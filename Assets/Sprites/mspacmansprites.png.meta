@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 01feb2549456b462889df73cccfbb0e9
-timeCreated: 1493354155
+timeCreated: 1493403932
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -16,10 +16,10 @@ TextureImporter:
     21300018: mspacmansprites_9
     21300020: mspacmansprites_10
     21300022: mspacmansprites_11
-    21300024: mspacmansprites_12
-    21300026: mspacmansprites_13
-    21300028: mspacmansprites_14
-    21300030: mspacmansprites_15
+    21300024: ghost_hurt1
+    21300026: ghost_hurt2
+    21300028: ghost_hurt3
+    21300030: ghost_hurt4
     21300032: redghost_up1
     21300034: redghost_up2
     21300036: redghost_down1
@@ -28,30 +28,30 @@ TextureImporter:
     21300042: redghost_left2
     21300044: redghost_right1
     21300046: redghost_right2
-    21300048: mspacmansprites_24
-    21300050: mspacmansprites_25
-    21300052: mspacmansprites_26
-    21300054: mspacmansprites_27
-    21300056: mspacmansprites_28
-    21300058: mspacmansprites_29
-    21300060: mspacmansprites_30
-    21300062: mspacmansprites_31
-    21300064: mspacmansprites_32
-    21300066: mspacmansprites_33
-    21300068: mspacmansprites_34
-    21300070: mspacmansprites_35
-    21300072: mspacmansprites_36
-    21300074: mspacmansprites_37
-    21300076: mspacmansprites_38
-    21300078: mspacmansprites_39
-    21300080: mspacmansprites_40
-    21300082: mspacmansprites_41
-    21300084: mspacmansprites_42
-    21300086: mspacmansprites_43
-    21300088: mspacmansprites_44
-    21300090: mspacmansprites_45
-    21300092: mspacmansprites_46
-    21300094: mspacmansprites_47
+    21300048: pinkghost_up1
+    21300050: pinkghost_up2
+    21300052: pinkghost_down1
+    21300054: pinkghost_down2
+    21300056: pinkghost_left1
+    21300058: pinkghost_left2
+    21300060: pinkghost_right1
+    21300062: pinkghost_right2
+    21300064: blueghost_up1
+    21300066: blueghost_up2
+    21300068: blueghost_down1
+    21300070: blueghost_down2
+    21300072: blueghost_left1
+    21300074: blueghost_left2
+    21300076: blueghost_right1
+    21300078: blueghost_right2
+    21300080: orangeghost_up1
+    21300082: orangeghost_up2
+    21300084: orangeghost_down1
+    21300086: orangeghost_down2
+    21300088: orangeghost_left1
+    21300090: orangeghost_left2
+    21300092: orangeghost_right1
+    21300094: right2
     21300096: cherry
     21300098: strawberry
     21300100: apple
@@ -298,7 +298,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_12
+      name: ghost_hurt1
       rect:
         serializedVersion: 2
         x: 128
@@ -311,7 +311,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_13
+      name: ghost_hurt2
       rect:
         serializedVersion: 2
         x: 160
@@ -324,7 +324,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_14
+      name: ghost_hurt3
       rect:
         serializedVersion: 2
         x: 192
@@ -337,7 +337,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_15
+      name: ghost_hurt4
       rect:
         serializedVersion: 2
         x: 224
@@ -454,7 +454,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_24
+      name: pinkghost_up1
       rect:
         serializedVersion: 2
         x: 0
@@ -467,7 +467,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_25
+      name: pinkghost_up2
       rect:
         serializedVersion: 2
         x: 32
@@ -480,7 +480,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_26
+      name: pinkghost_down1
       rect:
         serializedVersion: 2
         x: 64
@@ -493,7 +493,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_27
+      name: pinkghost_down2
       rect:
         serializedVersion: 2
         x: 96
@@ -506,7 +506,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_28
+      name: pinkghost_left1
       rect:
         serializedVersion: 2
         x: 128
@@ -519,7 +519,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_29
+      name: pinkghost_left2
       rect:
         serializedVersion: 2
         x: 160
@@ -532,7 +532,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_30
+      name: pinkghost_right1
       rect:
         serializedVersion: 2
         x: 192
@@ -545,7 +545,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_31
+      name: pinkghost_right2
       rect:
         serializedVersion: 2
         x: 224
@@ -558,7 +558,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_32
+      name: blueghost_up1
       rect:
         serializedVersion: 2
         x: 0
@@ -571,7 +571,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_33
+      name: blueghost_up2
       rect:
         serializedVersion: 2
         x: 32
@@ -584,7 +584,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_34
+      name: blueghost_down1
       rect:
         serializedVersion: 2
         x: 64
@@ -597,7 +597,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_35
+      name: blueghost_down2
       rect:
         serializedVersion: 2
         x: 96
@@ -610,7 +610,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_36
+      name: blueghost_left1
       rect:
         serializedVersion: 2
         x: 128
@@ -623,7 +623,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_37
+      name: blueghost_left2
       rect:
         serializedVersion: 2
         x: 160
@@ -636,7 +636,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_38
+      name: blueghost_right1
       rect:
         serializedVersion: 2
         x: 192
@@ -649,7 +649,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_39
+      name: blueghost_right2
       rect:
         serializedVersion: 2
         x: 224
@@ -662,7 +662,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_40
+      name: orangeghost_up1
       rect:
         serializedVersion: 2
         x: 0
@@ -675,7 +675,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_41
+      name: orangeghost_up2
       rect:
         serializedVersion: 2
         x: 32
@@ -688,7 +688,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_42
+      name: orangeghost_down1
       rect:
         serializedVersion: 2
         x: 64
@@ -701,7 +701,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_43
+      name: orangeghost_down2
       rect:
         serializedVersion: 2
         x: 96
@@ -714,7 +714,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_44
+      name: orangeghost_left1
       rect:
         serializedVersion: 2
         x: 128
@@ -727,7 +727,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_45
+      name: orangeghost_left2
       rect:
         serializedVersion: 2
         x: 160
@@ -740,7 +740,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_46
+      name: orangeghost_right1
       rect:
         serializedVersion: 2
         x: 192
@@ -753,7 +753,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: mspacmansprites_47
+      name: right2
       rect:
         serializedVersion: 2
         x: 224
