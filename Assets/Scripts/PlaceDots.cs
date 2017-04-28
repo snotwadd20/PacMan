@@ -14,9 +14,15 @@ public class PlaceDots : MonoBehaviour
 			{
 				if (PathNodes.self.nodeSpots[x, y])
 				{
+					Collider2D coll = Physics2D.OverlapPoint(new Vector2(x, y));
+
+					if (coll != null && coll.tag == "Player")
+						continue;
+					
 					PacDot pacDot = Instantiate<PacDot>(dotPrefab);
 					pacDot.transform.position = new Vector3(x, y);
 					pacDot.gameObject.SetActive(true);
+					PacDot.Count++;
 					//pacDot.transform.SetParent(transform, true);
 				}//if
 			}//for
@@ -25,6 +31,9 @@ public class PlaceDots : MonoBehaviour
 	
 	void Update () 
 	{
-		
+		if (PacDot.Count <= 0)
+		{
+			print("DONE! -> Pacdots left = " + PacDot.Count);
+		}//
 	}//Update
 }//

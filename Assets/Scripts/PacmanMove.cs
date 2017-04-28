@@ -5,18 +5,20 @@ using UnityEngine;
 public class PacmanMove : MonoBehaviour 
 {
 	public float speed = 0.4f;
-	private Rigidbody2D rb2d = null;
-	[HideInInspector]
-	public Vector2 dest = Vector2.zero;
-	Animator anim = null;
-	//Collider2D coll = null;
-	Vector2 lastDir = Vector2.right;
 	public bool emulatePacmanBugs = true;
+
+	//[HideInInspector]
+	public Vector2 dest = Vector2.zero;
+
+	private Vector2 lastDir = Vector2.right;
+	private Animator anim = null;
+	private Rigidbody2D rb2d = null;
+	private List<Vector2> inputDirs = new List<Vector2>();
+	private const int MAX_INPUTS_SAVED = 10;
 	void Awake () 
 	{
 		rb2d = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
-		//coll = GetComponent<Collider2D>();
 	}//Awake
 
 	void Start()
@@ -25,10 +27,24 @@ public class PacmanMove : MonoBehaviour
 		lastDir = Vector2.right;
 	}//Start
 
-	Vector2 inputDir = Vector2.zero;
 	void Update()
 	{
-		inputDir = GetInputDir();
+		inputDirs.Add(GetInputDir());
+
+		if (inputDirs.Count > MAX_INPUTS_SAVED)
+			inputDirs.RemoveAt(0);
+	}//Update
+
+	Vector2 FirstSavedInputDir()
+	{
+		Vector2 dir = Vector2.zero;
+
+		while (inputDirs.Count > 0 && dir == Vector2.zero)
+		{
+			dir = inputDirs[0];
+			inputDirs.RemoveAt(0);
+		}//while
+		return dir;
 	}//
 
 	void FixedUpdate()
@@ -36,6 +52,8 @@ public class PacmanMove : MonoBehaviour
 		//HAve we reached the destination?
 		if ((Vector2)transform.position == dest)
 		{
+			Vector2 inputDir = FirstSavedInputDir();
+
 			//If we readched it, is there input?
 			if(inputDir == Vector2.zero)
 			{
@@ -45,14 +63,9 @@ public class PacmanMove : MonoBehaviour
 					//If so, set the new destination
 					dest += lastDir;
 				}//if
-				else
-				{
-					//If not, stop pac-man
-					dest = transform.position;
-					//lastDir = Vector2.zero;
-				}//else
+
 			}//if
-			else	
+			else if (IsValid(inputDir))	
 			{
 				//If so, use the input
 				dest += inputDir;
@@ -67,6 +80,12 @@ public class PacmanMove : MonoBehaviour
 		anim.SetFloat("DirY", lastDir.y);
 
 	}//FixedUPdate
+
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawSphere(dest, 0.5f);
+	}//
 
 	public Vector2 GetAmbushPos(int offset)
 	{
@@ -116,8 +135,13 @@ public class PacmanMove : MonoBehaviour
 
 	bool IsValid(Vector2 dir)
 	{
-		Vector2 pos = new Vector2((int)transform.position.x, (int)transform.position.y);
-		Vector2 next = pos + dir;
+		//int x = Mathf.RoundToInt(transform.position.x);
+		//int y = Mathf.RoundToInt(transform.position.y);
+		//Vector2 pos = new Vector2(x, y);
+
+
+		int x = (int)dest.x + (int)dir.x;
+		int y = (int) dest.y + (int)dir.y;
 		//RaycastHit2D[] hits = Physics2D.LinecastAll(pos, (Vector2)transform.position + dir);
 
 		//bool isValid = true;
@@ -128,6 +152,6 @@ public class PacmanMove : MonoBehaviour
 				//isValid = false;
 		//}//for
 
-		return PathNodes.self.InBounds((int)next.x, (int)next.y) && PathNodes.self.nodeSpots[(int)next.x, (int)next.y];
+		return PathNodes.self.InBounds(x, y) && PathNodes.self.nodeSpots[x, y];
 	}//IsValid
 }//
