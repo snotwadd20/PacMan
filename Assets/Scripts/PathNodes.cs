@@ -45,6 +45,11 @@ public class PathNodes : MonoBehaviour
 		Debug.LogFormat("W:{0} , H:{1}", width, height);
 	}//Awake
 
+	public bool InBounds(int x, int y)
+	{
+		return (x >= 0 && x < width && y >= 0 && y < height);
+	}//InBounds
+
 	void Start()
 	{
 		
@@ -87,4 +92,5 @@ public class PathNodes : MonoBehaviour
 	{
 		
 	}//Update
+
 }//

@@ -17,6 +17,7 @@ public class PlaceDots : MonoBehaviour
 					PacDot pacDot = Instantiate<PacDot>(dotPrefab);
 					pacDot.transform.position = new Vector3(x, y);
 					pacDot.gameObject.SetActive(true);
+					//pacDot.transform.SetParent(transform, true);
 				}//if
 			}//for
 		}//for

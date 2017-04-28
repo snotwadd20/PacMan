@@ -6,23 +6,30 @@ public class PacmanMove : MonoBehaviour
 {
 	public float speed = 0.4f;
 	private Rigidbody2D rb2d = null;
-	Vector2 dest = Vector2.zero;
+	[HideInInspector]
+	public Vector2 dest = Vector2.zero;
 	Animator anim = null;
-	Collider2D coll = null;
-	Vector2 lastDir = Vector2.zero;
-
+	//Collider2D coll = null;
+	Vector2 lastDir = Vector2.right;
+	public bool emulatePacmanBugs = true;
 	void Awake () 
 	{
 		rb2d = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
-		coll = GetComponent<Collider2D>();
+		//coll = GetComponent<Collider2D>();
 	}//Awake
 
 	void Start()
 	{
 		dest = transform.position;
-		lastDir = Vector2.zero;
+		lastDir = Vector2.right;
 	}//Start
+
+	Vector2 inputDir = Vector2.zero;
+	void Update()
+	{
+		inputDir = GetInputDir();
+	}//
 
 	void FixedUpdate()
 	{
@@ -30,7 +37,6 @@ public class PacmanMove : MonoBehaviour
 		if ((Vector2)transform.position == dest)
 		{
 			//If we readched it, is there input?
-			Vector2 inputDir = GetInputDir();
 			if(inputDir == Vector2.zero)
 			{
 				//If not, can we keep movin in the same direction?
@@ -43,7 +49,7 @@ public class PacmanMove : MonoBehaviour
 				{
 					//If not, stop pac-man
 					dest = transform.position;
-					lastDir = Vector2.zero;
+					//lastDir = Vector2.zero;
 				}//else
 			}//if
 			else	
@@ -62,6 +68,35 @@ public class PacmanMove : MonoBehaviour
 
 	}//FixedUPdate
 
+	public Vector2 GetAmbushPos(int offset)
+	{
+		//Get pos 4 tiles in front of pacman
+		Vector2 ambushOffset = Vector2.zero;
+		if (lastDir == Vector2.up)
+		{
+			if (emulatePacmanBugs) //Emulate the bug in the original pacman
+					ambushOffset.x -= offset;
+				
+			ambushOffset.y += offset;
+		}
+		else if (lastDir == Vector2.down)
+		{
+			ambushOffset.y -= offset;
+		}//
+		else if (lastDir == Vector2.left)
+		{
+			ambushOffset.x -= offset;
+		}//
+		else if (lastDir == Vector2.right)
+		{
+			ambushOffset.x += offset;
+		
+		}//else if
+
+		Vector2 ambushPos = dest + ambushOffset;
+		return ambushPos;
+	}//
+
 	Vector2 GetInputDir()
 	{
 		if (Input.GetKey(KeyCode.UpArrow) && IsValid(Vector2.up) && lastDir != Vector2.up)
@@ -79,42 +114,20 @@ public class PacmanMove : MonoBehaviour
 		return Vector2.zero;
 	}//GetInputDir
 
-	void FixedUpdate2 () 
-	{
-		rb2d.MovePosition(Vector2.MoveTowards(transform.position, dest, speed));
-
-		if ((Vector2)transform.position == dest)
-		{
-			
-			if (Input.GetKey(KeyCode.UpArrow) && IsValid(Vector2.up))
-				dest = (Vector2)transform.position + Vector2.up;
-			if (Input.GetKey(KeyCode.DownArrow) && IsValid(Vector2.down))
-				dest = (Vector2)transform.position + Vector2.down;
-			if (Input.GetKey(KeyCode.RightArrow) && IsValid(Vector2.right))
-				dest = (Vector2)transform.position + Vector2.right;
-			if (Input.GetKey(KeyCode.LeftArrow) && IsValid(Vector2.left))
-				dest = (Vector2)transform.position + Vector2.left;
-			
-		}//if
-
-		Vector2 dir = dest - (Vector2)transform.position;
-		anim.SetFloat("DirX", dir.x);
-		anim.SetFloat("DirY", dir.y);
-
-	}//Update
-
 	bool IsValid(Vector2 dir)
 	{
-		RaycastHit2D[] hits = Physics2D.LinecastAll(transform.position, (Vector2)transform.position + dir);
+		Vector2 pos = new Vector2((int)transform.position.x, (int)transform.position.y);
+		Vector2 next = pos + dir;
+		//RaycastHit2D[] hits = Physics2D.LinecastAll(pos, (Vector2)transform.position + dir);
 
-		bool isValid = true;
+		//bool isValid = true;
 
-		for (int i = 0; i < hits.Length; i++)
-		{
-			if (!hits[i].collider.isTrigger && hits[i].collider != coll)
-				isValid = false;
-		}//for
+		//for (int i = 0; i < hits.Length; i++)
+		//{
+			//if (!hits[i].collider.isTrigger && hits[i].collider != coll)
+				//isValid = false;
+		//}//for
 
-		return isValid;
+		return PathNodes.self.InBounds((int)next.x, (int)next.y) && PathNodes.self.nodeSpots[(int)next.x, (int)next.y];
 	}//IsValid
 }//
