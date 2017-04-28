@@ -8,6 +8,7 @@ public class PlaceDots : MonoBehaviour
 
 	void Start () 
 	{
+		PacDot.Count = 0;
 		for (int y = 0; y < PathNodes.self.height; y++)
 		{
 			for (int x = 0; x < PathNodes.self.width; x++)
