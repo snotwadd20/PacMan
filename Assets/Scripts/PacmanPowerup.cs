@@ -13,10 +13,10 @@ public class PacmanPowerup : MonoBehaviour
 
 	public void Powerup()
 	{
-		print("POWER UP!");
+		//print("POWER UP!");
 		for (int i = 0; i < ghosts.Length; i++)
 		{
-			ghosts[i].MakeVulnerable();
+			ghosts[i].MakeFrightened();
 		}//for
 	}//Powerup
 }//
