@@ -23,6 +23,7 @@ public class GhostKill : MonoBehaviour
 		isVulnerable = true;
 		animator.SetBool("isVulnerable", true);
 		movement.InvertDirection();
+		movement.Scatter(true);
 		Invoke("MakeNormal", vulnerableLength);
 	}//MakeVulnerable
 
@@ -31,6 +32,7 @@ public class GhostKill : MonoBehaviour
 		isVulnerable = false;
 		animator.SetBool("isVulnerable", false);
 		movement.InvertDirection();
+		movement.Scatter(false);
 	}//
 
 	void KillGhost()

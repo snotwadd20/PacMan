@@ -471,7 +471,7 @@ MonoBehaviour:
   delayAtStart: 3
   waitTimeAfterDeath: 3
   test: 0
-  scatterPoint: {x: 0, y: 0}
+  scatterPoint: {x: 25, y: 31}
   exitPoint: {x: 14, y: 18}
 --- !u!95 &43132390
 Animator:
@@ -1584,7 +1584,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &454354878
 MonoBehaviour:
@@ -1602,7 +1602,7 @@ MonoBehaviour:
   delayAtStart: 6
   waitTimeAfterDeath: 3
   test: 0
-  scatterPoint: {x: 0, y: 0}
+  scatterPoint: {x: 25, y: -1}
   exitPoint: {x: 14, y: 18}
 --- !u!114 &454354879
 MonoBehaviour:
@@ -1628,7 +1628,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 1, y: -1}
   serializedVersion: 2
   m_Radius: 0.25
 --- !u!1 &470166754
@@ -2261,7 +2261,7 @@ MonoBehaviour:
   delayAtStart: 9
   waitTimeAfterDeath: 3
   test: 0
-  scatterPoint: {x: 0, y: 0}
+  scatterPoint: {x: 2, y: 31}
   exitPoint: {x: 14, y: 18}
 --- !u!95 &783340355
 Animator:
@@ -2331,7 +2331,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &783340358
 MonoBehaviour:
@@ -3043,7 +3043,7 @@ MonoBehaviour:
   delayAtStart: 12
   waitTimeAfterDeath: 3
   test: 0
-  scatterPoint: {x: 0, y: 0}
+  scatterPoint: {x: 2, y: -1}
   exitPoint: {x: 14, y: 18}
 --- !u!95 &1167998627
 Animator:
@@ -3139,7 +3139,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -1}
   serializedVersion: 2
   m_Radius: 0.25
 --- !u!1 &1219867880

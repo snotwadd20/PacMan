@@ -25,6 +25,7 @@ public class GhostMovement : MonoBehaviour
 
 	private bool waiting = false;
 	private bool atStart = false;
+	private bool isScattering = false;
 	// Use this for initialization
 	void Awake () 
 	{
@@ -51,8 +52,14 @@ public class GhostMovement : MonoBehaviour
 		waiting = false;
 	}//StopWaiting
 
+	public void Scatter(bool doScatter)
+	{
+		isScattering = doScatter;
+	}//
 	public void InvertDirection()
 	{
+		//print("INVERT");
+		lastDir = lastDir * -1;
 	}//InvertDirection
 
 	public void ReturnToStart()
@@ -60,6 +67,7 @@ public class GhostMovement : MonoBehaviour
 		transform.position = start;
 		dest = start;
 		atStart = true;
+		isScattering = false;
 		Wait(waitTimeAfterDeath);
 	}//ReturnToStart()
 
@@ -71,6 +79,11 @@ public class GhostMovement : MonoBehaviour
 
 	Vector2 GetTargetPos()
 	{
+		if (isScattering)
+		{
+			return scatterPoint;
+		}//
+
 		//TODO, chase mode VS scatter mode
 		Vector2 thePos = Vector2.zero;
 
