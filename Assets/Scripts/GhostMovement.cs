@@ -56,6 +56,7 @@ public class GhostMovement : MonoBehaviour
 	{
 		isScattering = doScatter;
 	}//
+
 	public void InvertDirection()
 	{
 		//print("INVERT");

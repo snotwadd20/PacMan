@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GhostKill : MonoBehaviour 
 {
-	public float vulnerableLength = 5.0f;	
+	public float frightenedLength = 5.0f;	
 	private PacmanMove pacman = null;
 	private Animator animator = null;
 	private GhostMovement movement = null;
 
-	private bool isVulnerable = false;
+	private bool isFrightened = false;
 	// Use this for initialization
 	void Awake () 
 	{
@@ -18,26 +18,26 @@ public class GhostKill : MonoBehaviour
 		movement = GetComponent<GhostMovement>();
 	}//Awake
 
-	public void MakeVulnerable()
+	public void MakeFrightened()
 	{
-		isVulnerable = true;
+		isFrightened = true;
 		animator.SetBool("isVulnerable", true);
 		movement.InvertDirection();
 		movement.Scatter(true);
-		Invoke("MakeNormal", vulnerableLength);
+		Invoke("MakeNormal", frightenedLength);
 	}//MakeVulnerable
 
-	public void MakeNormal()
+	public void UnFrighten()
 	{
-		isVulnerable = false;
+		isFrightened = false;
 		animator.SetBool("isVulnerable", false);
-		movement.InvertDirection();
+		//movement.InvertDirection();
 		movement.Scatter(false);
 	}//
 
 	void KillGhost()
 	{
-		MakeNormal();
+		UnFrighten();
 		movement.ReturnToStart();
 	}//KillGhost
 
@@ -47,7 +47,7 @@ public class GhostKill : MonoBehaviour
 	{
 		if (coll.gameObject == pacman.gameObject)
 		{
-			if (isVulnerable)
+			if (isFrightened)
 				KillGhost();
 			else
 				pacman.SendMessage("Die", SendMessageOptions.DontRequireReceiver);
