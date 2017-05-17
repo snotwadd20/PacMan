@@ -18,7 +18,7 @@ public class PacmanDie : MonoBehaviour
 			return;
 		
 		isDead = true;
-		Debug.Log("PACMAN IS DEED");
+		//Debug.Log("PACMAN IS DEED");
 		pacmanMover.enabled = false;
 		StartCoroutine(DieSequence());
 		//gameObject.SetActive(false);
@@ -26,7 +26,7 @@ public class PacmanDie : MonoBehaviour
 
 	public void ResetGame()
 	{
-		Debug.Log("RESET");
+		//Debug.Log("RESET");
 
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}//ResetGame

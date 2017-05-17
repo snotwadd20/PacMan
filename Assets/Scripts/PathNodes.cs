@@ -35,14 +35,14 @@ public class PathNodes : MonoBehaviour
 			{
 				Collider2D coll = Physics2D.OverlapPoint(new Vector2(x, y));
 
-				if (coll != null && coll.tag != "Player")
+				if (coll != null && coll.gameObject.layer == LayerMask.NameToLayer("Walls"))
 					nodeSpots[x, y] = false;
 				else
 					nodeSpots[x,y] = true;
 			}//for
 		}//for
 
-		Debug.LogFormat("W:{0} , H:{1}", width, height);
+		//Debug.LogFormat("W:{0} , H:{1}", width, height);
 	}//Awake
 
 	public bool InBounds(int x, int y)
@@ -67,7 +67,9 @@ public class PathNodes : MonoBehaviour
 			{
 				for (int x = 1; x < bounds.extents.x * 2; x++)
 				{
-					if (Physics2D.OverlapPoint(new Vector2(x, y)) == null)
+					Collider2D coll = Physics2D.OverlapPoint(new Vector2(x, y));
+
+					if(!(coll != null && coll.gameObject.layer ==  LayerMask.NameToLayer("Walls")))
 						Gizmos.DrawWireSphere(new Vector3(x, y), 0.25f);
 				}//for
 			}//for

@@ -9,6 +9,9 @@ public class GhostMovement : MonoBehaviour
 	public GhostType type = GhostType.Chaser;
 	public Vector2 lastDir = Vector2.zero;
 
+	public float delayAtStart = 3.0f;
+	public float waitTimeAfterDeath = 3.0f;
+
 	public bool test = false;
 	Vector2 dest = Vector2.zero;
 
@@ -16,6 +19,12 @@ public class GhostMovement : MonoBehaviour
 	float speed = 0;
 
 	public static GhostMovement chaseGhost = null;
+	public Vector2 scatterPoint = Vector2.zero;
+	public Vector2 exitPoint = new Vector2(14,18);
+	private Vector3 start = Vector3.zero;
+
+	private bool waiting = false;
+	private bool atStart = false;
 	// Use this for initialization
 	void Awake () 
 	{
@@ -24,7 +33,35 @@ public class GhostMovement : MonoBehaviour
 
 		if (type == GhostType.Chaser) //store this so blue ghost can access it
 			chaseGhost = this;
+
+		start = transform.position;
+		dest = start;
+		atStart = true;
+		Wait(delayAtStart);
 	}//Awake
+
+	public void Wait(float time)
+	{
+		waiting = true;
+		Invoke("StopWaiting", time);
+	}//Wait
+
+	public void StopWaiting()
+	{
+		waiting = false;
+	}//StopWaiting
+
+	public void InvertDirection()
+	{
+	}//InvertDirection
+
+	public void ReturnToStart()
+	{
+		transform.position = start;
+		dest = start;
+		atStart = true;
+		Wait(waitTimeAfterDeath);
+	}//ReturnToStart()
 
 	void Start()
 	{
@@ -86,6 +123,9 @@ public class GhostMovement : MonoBehaviour
 
 	void FixedUpdate()
 	{
+		if (waiting)
+			return;
+		
 		transform.position = Vector2.MoveTowards(transform.position, dest, speed);
 
 		if ((Vector2)transform.position == dest)
@@ -120,6 +160,14 @@ public class GhostMovement : MonoBehaviour
 	{
 		List<Vector2> validDests = new List<Vector2>();
 		//Look up, down, left, right (can't go backwards)
+
+		//If you're in the ghost house
+		if (atStart)
+		{
+			atStart = false;
+			validDests.Add(exitPoint);
+			return validDests;
+		}//if
 
 		//UP
 		if(lastDir != Vector2.down && PathNodes.self.InBounds(curX, curY +1) && PathNodes.self.nodeSpots[curX, curY+1])
