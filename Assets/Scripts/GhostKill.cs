@@ -5,7 +5,7 @@ using UnityEngine;
 public class GhostKill : MonoBehaviour 
 {
 	public float frightenedLength = 5.0f;	
-	private PacmanMove pacman = null;
+	private PacmanDie pacman = null;
 	private Animator animator = null;
 	private GhostMovement movement = null;
 
@@ -13,7 +13,7 @@ public class GhostKill : MonoBehaviour
 	// Use this for initialization
 	void Awake () 
 	{
-		pacman = FindObjectOfType<PacmanMove>();
+		pacman = FindObjectOfType<PacmanDie>();
 		animator = GetComponent<Animator>();
 		movement = GetComponent<GhostMovement>();
 	}//Awake
@@ -24,7 +24,7 @@ public class GhostKill : MonoBehaviour
 		animator.SetBool("isVulnerable", true);
 		movement.InvertDirection();
 		movement.Scatter(true);
-		Invoke("MakeNormal", frightenedLength);
+		Invoke("UnFrighten", frightenedLength);
 	}//MakeVulnerable
 
 	public void UnFrighten()
@@ -50,8 +50,9 @@ public class GhostKill : MonoBehaviour
 			if (isFrightened)
 				KillGhost();
 			else
-				pacman.SendMessage("Die", SendMessageOptions.DontRequireReceiver);
+				pacman.Die();
 		}//if
+		print(coll.name + "->" + isFrightened);
 	}//OnTriggerEnter2D
 	
 	// Update is called once per frame
